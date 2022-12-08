@@ -11,12 +11,18 @@ function update() {
     var max_font_size = parseInt($("#max_font_size").val(), 10);
     var poster_size = $("#poster_size").val();
     if (poster_size == "custom") {
+        $("#orientation").css("display", "none");
         $("#custom_size").css("display", "inline");
         var poster_width = parseSize("#poster_width");
         var poster_height = parseSize("#poster_height");
     } else {
         $("#custom_size").css("display", "none");
-        var dimensions = poster_size.split(" ")
+        $("#orientation").css("display", "inline");
+        var dimensions = poster_size.split(" ");
+        var orientation = $("input[name=orientation]:checked").val();
+        if (orientation == "landscape") {
+            dimensions = dimensions.reverse();
+        }
         var poster_width = dimensions[0];
         var poster_height = dimensions[1];
         $("#poster_width").val(poster_width);
@@ -58,12 +64,42 @@ function update() {
     }
 }
 
+function add_paper_sizes() {
+    var size_select = $("#poster_size");
+    var paper_sizes = {
+        meme: "297px 420px",
+        custom: "custom",
+        A5: "148mm 210mm",
+        A4: "210mm 297mm",
+        A3: "297mm 420mm",
+        Letter: "216mm 279mm",
+        Legal: "216mm 356mm",
+        Tabloid: "279mm 432mm",
+    };
+    for (var name in paper_sizes) {
+        var size = paper_sizes[name];
+        size_select.append($("<option>").val(size).text(name));
+    }
+}
+
+function add_handlers() {
+    $("select, input, textarea").keyup(update).change(update);
+
+    $("#download_button").click(function() {
+        $(document).href = $("canvas")[0].toDataURL();
+        $(document).download = "poster.png";
+        var image = $("canvas")[0].toDataURL("image/png").replace("image/png", "image/octet-stream");
+        var link = document.createElement("a");
+        link.download = "poster.png";
+        link.href = image;
+        link.click();
+    });
+}
+
 $(function () {
-    $("#text").keyup(update).change(update);
-    $("#max_font_size").keyup(update).change(update);
-    $("#poster_size").keyup(update).change(update);
-    $("#poster_width").keyup(update).change(update);
-    $("#poster_height").keyup(update).change(update);
+    add_paper_sizes();
+    add_handlers();
+
     $("#text").val("keep\ncalm\nand\ncarry\non");
     update();
 });

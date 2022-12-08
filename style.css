@@ -1,0 +1,56 @@
+@font-face {
+    font-family: "OPTIMorgan-One";
+    src: url("OPTIMorgan-One.ttf.woff") format("woff"),
+        url("OPTIMorgan-One.ttf.svg#OPTIMorgan-One") format("svg"),
+        url("OPTIMorgan-One.ttf.eot"),
+        url("OPTIMorgan-One.ttf.eot?#iefix") format("embedded-opentype"); 
+    font-weight: normal;
+    font-style: normal;
+}
+@media print {    
+    #input *, .modal * {
+        display: none !important;
+    }
+    body {
+        background: #F8F6F0 !important;
+        text-align: center !important;
+        vertical-align: middle !important;
+    }
+    #poster {
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+    }
+}
+#input {
+    margin: 1%;
+}
+#input * {
+    vertical-align: top;
+}
+#input label, #input input, #input select {
+    margin-right: 0.5em;
+}
+#poster { 
+    font-family: "OPTIMorgan-One";
+    text-align: center;
+    vertical-align: middle;
+    color: #E94B27;
+    background: #F8F6F0;
+    width: 210mm;
+    height: 297mm;
+    white-space: pre;
+    padding: 3%;
+    border: 1px solid black;
+    margin: 1%;
+}  
+#custom_size {
+    display: none;
+}
+#poster_image {
+    text-align: center;
+}
+.modal-title {
+    display: inline;
+}
+

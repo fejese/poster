@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Poster</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="style.css" />
+        <!-- from http://jquery-textfill.github.io/example/ -->
+        <script src="jquery.textfill.js"></script>
+        <!-- from https://github.com/niklasvh/html2canvas/releases -->
+        <script src="html2canvas.min.js"></script>
+
+        <script src="poster.js"></script>
+    </head>
+    <body>
+        <div id="input" class="no-print col-md-12">
+            <div class="col-md-4">
+                <label for="text">Text:</label>
+                <textarea id="text" rows="5" cols="10">text</textarea>
+            </div>
+            <div class="col-md-8">
+                <label for="max_font_size">Max font size:</label><input type="text" id="max_font_size" value="0" size="4" /><br />
+                <label for="poster_size">Size:</label>
+                <select id="poster_size">
+                    <option value="210mm 297mm">A4 vertical</option>
+                    <option value="297mm 210mm">A4 horizontal</option>
+                    <option value="297mm 420mm">A3 vertical</option>
+                    <option value="420mm 297mm">A3 horizontal</option>
+                    <option value="297px 420px">meme vertical</option>
+                    <option value="420px 297px">meme horizontal</option>
+                    <option value="custom">custom</option>
+                </select><br />
+                <span id="custom_size">
+                    <label for="poster_width">Width (px/mm):</label><input id="poster_width" size="7" />
+                    <label for="poster_height">Height (px/mm):</label><input id="poster_height" size="7" />
+                    <br />
+                </span>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#image_overlay">
+                  Show as image
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div id="poster"><span id="poster_text"></span></div>
+        </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="image_overlay">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="poster_image"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
